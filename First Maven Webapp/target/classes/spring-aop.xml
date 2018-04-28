@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans    
+                        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd   
+                        http://www.springframework.org/schema/aop 
+                        http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+                        http://www.springframework.org/schema/context 
+                        http://www.springframework.org/schema/context/spring-context-3.0.xsd">  
+    <!-- 自动扫描该包，Spring 扫描组件并注入bean,免去下面的bean配置 -->  
+    <!-- service包有其他@Service组件,我不想扫描其它组件 ,所以就用@Repository区别并结合下方扫描配置-->
+    <!-- 定义扫描根路径为com.study.service,com.study.aop，不使用默认的扫描方式 -->
+	<context:component-scan base-package="com.study.service,com.study.aop" use-default-filters="false">
+	  <!-- 扫描符合@Repository的类 -->
+	  <context:include-filter type="annotation" expression="org.springframework.stereotype.Repository" />
+	</context:component-scan>
+   
+    <!-- 接口实现类bean -->
+    <!-- <bean id="helloWorldService" class="com.study.service.impl.HelloWorldService"/> -->
+    
+    <!-- 配置切面类bean -->
+    <!-- <bean id="helloWorldAspect" class="com.study.aop.HelloWorldAspect"/> -->
+    <!-- 第一种：手动配置AOP -->
+    <!-- <aop:config>
+    	<aop:pointcut expression="execution(* com.study..*.*(..))" id="helloWorldPointcut"/>
+    	<aop:aspect ref="helloWorldAspect">
+    		<aop:before method="beforeAdvice" pointcut-ref="helloWorldPointcut"/>
+    	</aop:aspect>
+    	<aop:aspect ref="helloWorldAspect">
+    		<aop:around pointcut="execution(* com.study..*.*(..))" method="aroundAdvice"/>
+    		<aop:before pointcut="execution(* com.study..*.*(..))" method="beforeAdvice"/>
+    		<aop:after pointcut="execution(* com.study..*.*(..))" method="afterAdvice"/>
+    	</aop:aspect>
+    </aop:config> -->
+    
+	<!-- 声明自动为spring容器中那些配置@aspectJ切面的bean创建代理,织入切面 -->
+    <!--如果切面针对spring的@Service，@Component,@Repository组件， 不管是注解的方式还是配置的方式aop,都要加下面这个代码，不然没效果-->
+    <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+    
+</beans>

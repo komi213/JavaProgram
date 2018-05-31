@@ -24,7 +24,7 @@ public class TraditionalThread {
 			}
 		};
 		th1.start();
-		//第二种：Runable方式，更体现面向对象方式(推荐)
+		//第二种：Runnable方式，更体现面向对象方式(推荐)
 		Thread th2 = new Thread(new Runnable(){
 			@Override
 			public void run() {

@@ -26,4 +26,5 @@ public class Test1 {
 	    String v2 = StringUtils.isNotBlank(v1)?v1.replace(" ", ""):"";//空格替换
 	    System.out.println("V2:"+v2);
 	}
+
 }

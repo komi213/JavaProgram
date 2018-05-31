@@ -1,5 +1,8 @@
 package com.study.tool.InheritTest;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Dog extends Animal{
 	public Dog(){
 		System.out.println("Dog构造方法");
@@ -25,7 +28,12 @@ public class Dog extends Animal{
 	   Animal c = b;
 	   System.out.println(c.getClass());//c实际引用的是b
 	   //返回引用运行时真正所指的对象(因为:子对象的引用可能会赋给父对象的引用变量中)
-	   
+
+	   Animal d = new Dog();
+	   d.move();
+	   List<Dog> list1 = new ArrayList<>();
+	   //list1.add(d);
+	   //list1.add(b);
 	}
 }
 	 

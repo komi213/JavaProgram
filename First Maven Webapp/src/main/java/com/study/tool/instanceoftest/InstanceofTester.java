@@ -1,5 +1,12 @@
 package com.study.tool.instanceoftest;
 
+
+import org.springframework.cglib.core.CollectionUtils;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.ListIterator;
+
 public class InstanceofTester {
 	public static void main(String[] args) {
 		//1.测试子类与父类实例化执行过程,看输出 
@@ -28,7 +35,31 @@ public class InstanceofTester {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}*/
-		
+
+		ArrayList<Student> studentListSrc=new ArrayList<Student>();
+
+		studentListSrc.add(new Student());
+		studentListSrc.add(new Student());
+
+		Student set = studentListSrc.set(1, null);
+
+		ListIterator<Student> studentListIterator = studentListSrc.listIterator();
+		while (studentListIterator.hasNext()){
+			System.out.println(studentListIterator.next());
+		}
+
+
+		//ArrayList<Student> studentListDest=new ArrayList<Student>();
+		//Collections.addAll(studentListDest,  new Object[3]);
+		//Collections.copy(studentListDest,studentListSrc);
+
+		Student[] students = new Student[3];
+		//Object[] obj = new Object[3];
+		//obj[2]=3;
+		//obj[3]=4;
+
+		int cd = 5;
+
 	}
 	public static void instanceofTest(Person p){
 		//Person类所在的继承树是：Object<--Person<--Student<--Postgraduate。

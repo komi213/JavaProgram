@@ -1,1 +1,0 @@
-var zuul_url="http://localhost:5555";
